@@ -1,6 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
-const koffi = require('./koffi')
+const { openMessageBoxA, openMessageBoxW } = require('../src/utils/koffi');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -10,10 +10,11 @@ if (require('electron-squirrel-startup')) {
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    minHeight: 700,
+    minWidth: 1200,
+    autoHideMenuBar: true,
     webPreferences: {
-      nodeIntegration: false,
+      nodeIntegration: true,
       contextIsolation: true,
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
@@ -25,6 +26,14 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 };
+
+ipcMain.handle('show-message-box', async (event, type) => {
+  if (type === 'A') {
+    return openMessageBoxA('Do you want another message box?', 'Koffi');
+  } else if (type === 'W') {
+    return openMessageBoxW('Hello World!', 'Koffi');
+  }
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

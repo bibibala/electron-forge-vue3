@@ -1,10 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
+  <head>
     <meta charset="UTF-8" />
-    <title>Hello world</title>
-</head>
-<body>
-<div id="app"></div>
-</body>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
+    />
+
+    <!--    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self';">-->
+    <title></title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
