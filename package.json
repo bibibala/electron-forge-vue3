@@ -2,6 +2,11 @@
   "name": "my-new-app",
   "productName": "my-new-app",
   "version": "1.0.0",
+  "author": {
+    "name": "zsqNightwish",
+    "email": "1140918095@qq.com",
+    "url": "https://github.com/bibibala"
+  },
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
